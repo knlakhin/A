@@ -1,4 +1,3 @@
-#include <math.h>
 #include <stdio.h>
 
 int main(void)
@@ -6,37 +5,36 @@ int main(void)
     FILE *f = fopen("input_data.txt", "r");
     if (f == NULL)
     {
-        printf("File error");
-        return 0;
+        printf("File error\n");
+        return 1;
     }
 
     double first, current;
-    int greater = 0, less = 0;
+    int greater = 0;
 
     if (fscanf(f, "%lf", &first) != 1)
     {
-        printf("File is empty");
-        return 0;
+        printf("File is empty\n");
+        fclose(f);
+        return 1;
     }
 
     while (fscanf(f, "%lf", &current) == 1)
     {
         if (current > first)
-        {
-            greater += 1;
-        }
+            greater++;
         else if (current < first)
-        {
-            less += 1;
-        }
+            greater--;
     }
 
-    if (greater > less)
-        printf("Greater: %d > %d", greater, less);
-    else if (less > greater)
-        printf("Less: %d > %d", less, greater);
+    fclose(f);
+
+    if (greater > 0)
+        printf("Greater: %d\n", greater);
+    else if (greater < 0)
+        printf("Less: %d\n", -greater);
     else
-        printf("Equal: %d = %d", greater, less);
+        printf("Equal\n");
 
     return 0;
 }
