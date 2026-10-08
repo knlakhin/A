@@ -1,5 +1,27 @@
 #include <stdio.h>
 
+int count_with_condition(FILE *f);
+int count_with_condition(FILE *f)
+{
+    double first = 0., current = 0.;
+    int count = 0;
+
+    if (fscanf(f, "%lf", &first) != 1)
+    {
+        printf("File is empty\n");
+        return 0;
+    }
+
+    while (fscanf(f, "%lf", &current) == 1)
+    {
+        if (current > first)
+            count++;
+        else if (current < first)
+            count--;
+    }
+    return count;
+}
+
 int main(void)
 {
     FILE *f = fopen("input_data.txt", "r");
@@ -9,24 +31,7 @@ int main(void)
         return 1;
     }
 
-    double first, current;
-    int greater = 0;
-
-    if (fscanf(f, "%lf", &first) != 1)
-    {
-        printf("File is empty\n");
-        fclose(f);
-        return 1;
-    }
-
-    while (fscanf(f, "%lf", &current) == 1)
-    {
-        if (current > first)
-            greater++;
-        else if (current < first)
-            greater--;
-    }
-
+    int greater = count_with_condition(f);
     fclose(f);
 
     if (greater > 0)
