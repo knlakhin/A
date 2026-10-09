@@ -23,7 +23,8 @@ int count_with_condition(FILE *f)
 }
 
 int main(void)
-{
+{   
+    int greater = count_with_condition(f);
     FILE *f = fopen("input_data.txt", "r");
     if (f == NULL)
     {
