@@ -23,14 +23,14 @@ int count_with_condition(FILE *f)
 }
 
 int main(void)
-{   
+{
+    int greater = count_with_condition(f);
     FILE *f = fopen("input_data.txt", "r");
     if (f == NULL)
     {
         printf("File error\n");
         return 1;
     }
-    int greater = count_with_condition(f);
     
     if (greater > 0)
         printf("Greater: %d\n", greater);
