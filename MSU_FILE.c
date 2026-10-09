@@ -30,10 +30,7 @@ int main(void)
         printf("File error\n");
         return 1;
     }
-
-    int greater = count_with_condition(f);
-    fclose(f);
-
+    
     if (greater > 0)
         printf("Greater: %d\n", greater);
     else if (greater < 0)
