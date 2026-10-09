@@ -24,14 +24,24 @@ int count_with_condition(FILE *f)
 
 int main(void)
 {
-    int greater = count_with_condition(f);
-    FILE *f = fopen("input_data.txt", "r");
+    /* 1. Объявляем все переменные в начале функции (требование C90) */
+    FILE *f;
+    int greater;
+
+    /* 2. Открываем файл */
+    f = fopen("input_data.txt", "r");
+    
+    /* 3. Проверяем, успешно ли открылся файл */
     if (f == NULL)
     {
         printf("File error\n");
         return 1;
     }
-    
+
+    /* 4. Вызываем функцию, передавая ей уже открытый файл */
+    greater = count_with_condition(f);
+
+    /* 5. Выводим результат */
     if (greater > 0)
         printf("Greater: %d\n", greater);
     else if (greater < 0)
