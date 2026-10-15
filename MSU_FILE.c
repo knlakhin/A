@@ -1,6 +1,7 @@
 #include <stdio.h>
 
 int count_with_condition(FILE *f);
+
 int count_with_condition(FILE *f)
 {
     double first = 0., current = 0.;
@@ -24,18 +25,15 @@ int count_with_condition(FILE *f)
 
 int main(void)
 {
-    FILE *f;
-    int greater;
-    
-    f = fopen("input_data.txt", "r");
-    
+    FILE *f = fopen("input_data.txt", "r");
     if (f == NULL)
     {
         printf("File error\n");
         return 1;
     }
 
-    greater = count_with_condition(f);
+    int greater = count_with_condition(f);
+    fclose(f);
 
     if (greater > 0)
         printf("Greater: %d\n", greater);
