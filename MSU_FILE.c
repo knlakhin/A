@@ -1,7 +1,5 @@
 #include <stdio.h>
-
 int count_with_condition(FILE *f);
-
 int count_with_condition(FILE *f)
 {
     double first = 0., current = 0.;
